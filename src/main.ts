@@ -6,17 +6,14 @@ async function bootstrap() {
   
   // Configurar CORS para permitir comunicación con el frontend
   app.enableCors({
-    origin: process.env.FRONTEND_URL ? [
+    origin: [
       'http://localhost:3000', 
       'http://localhost:3001',
-      process.env.FRONTEND_URL
-    ] : [
-      'http://localhost:3000',
-      'http://localhost:3001',
+      'https://biocafe.onrender.com', // Frontend en Render
       /^https?:\/\/.*\.netlify\.app$/,
       /^https?:\/\/.*\.vercel\.app$/
-    ], // Permite orígenes comunes de desarrollo y despliegue
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
   });
