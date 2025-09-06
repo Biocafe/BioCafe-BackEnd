@@ -2,6 +2,7 @@ import {Body,Controller,Delete, Get, Param, Patch, Post, UploadedFile,UseInterce
 import { DatosService } from './datos.service';
 import { DatosDto } from './datos.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { Express } from 'express';
 
 @Controller('datos')
 export class DatosController {
