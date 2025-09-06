@@ -10,7 +10,12 @@ async function bootstrap() {
       'http://localhost:3000', 
       'http://localhost:3001',
       process.env.FRONTEND_URL
-    ] : true, // Permite todos los orígenes si no hay FRONTEND_URL configurada
+    ] : [
+      'http://localhost:3000',
+      'http://localhost:3001',
+      /^https?:\/\/.*\.netlify\.app$/,
+      /^https?:\/\/.*\.vercel\.app$/
+    ], // Permite orígenes comunes de desarrollo y despliegue
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
