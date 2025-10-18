@@ -11,4 +11,10 @@ export class GptController {
   async consultarGpt(@Body() body: { prompt: string }) {
     return this.gptService.consultarGpt(body.prompt);
   }
+
+  // Endpoint público para GPT personalizado AURA
+  @Post('aura')
+  async consultarAura(@Body() body: { prompt: string }) {
+    return this.gptService.consultarGpt(body.prompt);
+  }
 }
