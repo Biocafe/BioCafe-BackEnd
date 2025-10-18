@@ -38,6 +38,7 @@
     "mathjs": "^14.3.1",
     "mongoose": "^8.12.1",
     "nodemailer": "^7.0.6",
+    "openai": "^6.5.0",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "reflect-metadata": "^0.2.2",
