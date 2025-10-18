@@ -1,4 +1,14 @@
-import {Body,Controller,Delete, Get, Param, Patch, Post, UploadedFile,UseInterceptors,} from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  UploadedFile,
+  UseInterceptors,
+} from '@nestjs/common';
 import { DatosService } from './datos.service';
 import { DatosDto } from './datos.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -51,9 +61,16 @@ export class DatosController {
   // 🔹 Actualizar un dato existente por ID
   @Patch('/:id')
   async actualizar(@Param('id') id: string, @Body() datosDto: DatosDto) {
-    const datoActualizado = await this.datosService.ActualizarDato(id, datosDto);
+    const datoActualizado = await this.datosService.ActualizarDato(
+      id,
+      datosDto,
+    );
     return datoActualizado
-      ? { ok: true, mensaje: 'Dato actualizado correctamente.', datoActualizado }
+      ? {
+          ok: true,
+          mensaje: 'Dato actualizado correctamente.',
+          datoActualizado,
+        }
       : { ok: false, mensaje: 'El dato no existe o no se pudo actualizar.' };
   }
 

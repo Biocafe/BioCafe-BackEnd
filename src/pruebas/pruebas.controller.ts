@@ -27,18 +27,25 @@ export class PruebasController {
 
     // 🛑 Validación básica de estructura
     if (!tipo || !datos || !Array.isArray(datos) || datos.length === 0) {
-      throw new BadRequestException('Debe enviar el tipo de prueba y un arreglo de datos válidos.');
+      throw new BadRequestException(
+        'Debe enviar el tipo de prueba y un arreglo de datos válidos.',
+      );
     }
 
     // 🧪 Validar que el tipo de prueba sea uno de los soportados
     const tipoNormalizado = tipo.toLowerCase();
     const pruebasPermitidas = ['shapiro', 'levene', 'anova', 'duncan'];
     if (!pruebasPermitidas.includes(tipoNormalizado)) {
-      throw new BadRequestException(`Tipo de prueba no soportado. Pruebas válidas: ${pruebasPermitidas.join(', ')}`);
+      throw new BadRequestException(
+        `Tipo de prueba no soportado. Pruebas válidas: ${pruebasPermitidas.join(', ')}`,
+      );
     }
 
     // ✅ Ejecutar la prueba estadística
-    const resultado = await this.pruebasService.ejecutar(tipoNormalizado, datos);
+    const resultado = await this.pruebasService.ejecutar(
+      tipoNormalizado,
+      datos,
+    );
 
     // 📦 Retornar respuesta estructurada
     return {

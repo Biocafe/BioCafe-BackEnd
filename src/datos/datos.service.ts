@@ -77,7 +77,8 @@ export class DatosService {
 
       for (const fila of datosExcel) {
         const tratamiento = fila.tratamiento ?? fila.Tratamiento;
-        const valorTratamiento = fila.valor_tratamiento ?? fila['valor tratamiento'] ?? fila.Valor;
+        const valorTratamiento =
+          fila.valor_tratamiento ?? fila['valor tratamiento'] ?? fila.Valor;
         const resultado = fila.resultado ?? fila.Resultado;
 
         if (
@@ -86,7 +87,8 @@ export class DatosService {
           !isNaN(Number(resultado))
         ) {
           tratamientosSet.add(tratamiento);
-          replicasPorTratamiento[tratamiento] = (replicasPorTratamiento[tratamiento] || 0) + 1;
+          replicasPorTratamiento[tratamiento] =
+            (replicasPorTratamiento[tratamiento] || 0) + 1;
 
           datosValidos.push({
             Archivo: buffer,
@@ -96,27 +98,39 @@ export class DatosService {
             resultado: this.normalizarNumero(resultado),
           });
         } else {
-          throw new BadRequestException(`Error en fila: ${JSON.stringify(fila)}`);
+          throw new BadRequestException(
+            `Error en fila: ${JSON.stringify(fila)}`,
+          );
         }
       }
 
       // Verificaciones estadísticas mínimas (sin bloquear)
       if (tratamientosSet.size < 3) {
-        console.warn("⚠️ Mínimo se requieren 3 tratamientos para un análisis ANOVA con significancia estadística.");
+        console.warn(
+          '⚠️ Mínimo se requieren 3 tratamientos para un análisis ANOVA con significancia estadística.',
+        );
       }
 
-      const replicaUnica = Object.values(replicasPorTratamiento).some((r) => r === 1);
+      const replicaUnica = Object.values(replicasPorTratamiento).some(
+        (r) => r === 1,
+      );
       if (replicaUnica) {
-        throw new BadRequestException("❌ No se puede hacer ANOVA con solo una réplica por tratamiento.");
+        throw new BadRequestException(
+          '❌ No se puede hacer ANOVA con solo una réplica por tratamiento.',
+        );
       }
 
-      if (Object.values(replicasPorTratamiento).some(r => r < 3)) {
-        console.warn("⚠️ Se recomienda al menos 3 réplicas por tratamiento para mayor validez estadística.");
-      }      
+      if (Object.values(replicasPorTratamiento).some((r) => r < 3)) {
+        console.warn(
+          '⚠️ Se recomienda al menos 3 réplicas por tratamiento para mayor validez estadística.',
+        );
+      }
 
       return datosValidos;
     } catch (error) {
-      throw new BadRequestException(`Error al procesar el archivo Excel: ${error.message}`);
+      throw new BadRequestException(
+        `Error al procesar el archivo Excel: ${error.message}`,
+      );
     }
   }
 

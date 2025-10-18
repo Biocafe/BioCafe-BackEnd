@@ -10,7 +10,7 @@ export const DatosSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 export interface IDatos extends mongoose.Document {

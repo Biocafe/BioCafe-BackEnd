@@ -11,13 +11,18 @@ export class EmailService {
     this.transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: this.configService.get<string>('EMAIL_USER') || 'tu-email@gmail.com', // Configurar en variables de entorno
-        pass: this.configService.get<string>('EMAIL_PASS') || 'tu-contraseña-app', // Usar contraseña de aplicación
+        user:
+          this.configService.get<string>('EMAIL_USER') || 'tu-email@gmail.com', // Configurar en variables de entorno
+        pass:
+          this.configService.get<string>('EMAIL_PASS') || 'tu-contraseña-app', // Usar contraseña de aplicación
       },
     });
   }
 
-  async enviarCorreoBienvenida(email: string, nombreUsuario: string): Promise<boolean> {
+  async enviarCorreoBienvenida(
+    email: string,
+    nombreUsuario: string,
+  ): Promise<boolean> {
     try {
       const mailOptions = {
         from: process.env.EMAIL_USER || 'biocafe@gmail.com',

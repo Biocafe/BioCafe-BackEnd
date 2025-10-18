@@ -7,10 +7,12 @@ import { EmailModule } from '../email/email.module';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: 'Autenticador', schema: AutenticadorSchema }]),
+    MongooseModule.forFeature([
+      { name: 'Autenticador', schema: AutenticadorSchema },
+    ]),
     EmailModule,
   ],
   controllers: [AutenticadorController],
-  providers: [AutenticadorService]
+  providers: [AutenticadorService],
 })
 export class AutenticadorModule {}

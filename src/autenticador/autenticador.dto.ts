@@ -1,4 +1,4 @@
-export class AutenticadorDto { 
-    usuario: string;
-    password: string;
+export class AutenticadorDto {
+  usuario: string;
+  password: string;
 }

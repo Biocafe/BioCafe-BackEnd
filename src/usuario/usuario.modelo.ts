@@ -8,7 +8,7 @@ export const UsuarioSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 export interface IUsuario extends mongoose.Document {

@@ -20,7 +20,7 @@ export const PruebaSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 export interface IPrueba extends mongoose.Document {
